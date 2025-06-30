@@ -91,7 +91,16 @@ export function createServer() {
 if (import.meta.url.endsWith(process.argv[1]) || process.argv[1]?.includes('server/index.ts')) {
   console.log("🚀 Starting server...");
   const app = createServer();
-  const port = process.env.PORT ? Number(process.env.PORT) : config.PORT;
+  // Use only process.env.PORT in production, fallback only for local dev
+  const port = config.NODE_ENV === "production"
+    ? Number(process.env.PORT)
+    : process.env.PORT
+    ? Number(process.env.PORT)
+    : config.PORT;
+
+  if (!port) {
+    throw new Error('PORT environment variable must be set in production!');
+  }
 
   app.listen(port, () => {
     console.log(`🚀 Server running on port ${port}`);
