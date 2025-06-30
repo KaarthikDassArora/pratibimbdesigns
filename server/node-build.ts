@@ -4,7 +4,7 @@ import { createServer } from "./index";
 import * as express from "express";
 
 const app = createServer();
-const PORT = process.env.PORT ? Number(process.env.PORT) : 3001;
+const PORT = process.env.PORT; // No fallback for Railway
 
 // In production, serve the built SPA files
 const __filename = fileURLToPath(import.meta.url);
@@ -25,7 +25,7 @@ app.get("*", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`✅ Server started on port ${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
   console.log(`📱 Frontend: http://localhost:${PORT}`);
   console.log(`🔧 API: http://localhost:${PORT}/api`);
 });
