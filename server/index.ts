@@ -91,7 +91,7 @@ export function createServer() {
 if (import.meta.url.endsWith(process.argv[1]) || process.argv[1]?.includes('server/index.ts')) {
   console.log("🚀 Starting server...");
   const app = createServer();
-  const port = config.PORT;
+  const port = process.env.PORT ? Number(process.env.PORT) : config.PORT;
 
   app.listen(port, () => {
     console.log(`🚀 Server running on port ${port}`);
