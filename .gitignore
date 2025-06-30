@@ -1,21 +1,34 @@
+# Node modules
+node_modules/
+**/node_modules/**
+
+# Build outputs
+dist/
+dist-ssr/
+build/
+
+# Environment files
+.env
+.env.*
+
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+log.txt
 
-node_modules
-dist
-dist-ssr
-*.local
+# Coverage
+coverage/
+.nyc_output/
 
 # Editor directories and files
-.vscode/*
+.vscode/
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
@@ -23,7 +36,31 @@ dist-ssr
 *.sln
 *.sw?
 
+# Misc
 .config/
-.vercel
-.env
-.env
+.vercel/
+.netlify/
+.cursor/
+
+# Temporary files
+*.tmp
+*.tmp.*
+~
+
+# Exclude test, fixture, and data directories if not needed in repo
+tmp/
+data/
+load-ids.txt
+
+# Exclude Netlify and Vercel build artifacts
+packages/ml-air/lib/
+packages/ml-air/bin/
+packages/ml-air/project/
+packages/ml-air/share/
+packages/ml-air/random_forest_classification/
+packages/ml-air/__pycache__/
+packages/ml-air/app/__pycache__/
+packages/vcp-common/native-bridge/build/
+packages/vcp-common/_tests_/dataset-ranking.csv
+
+# Do NOT ignore source code directories like server/ or client/
