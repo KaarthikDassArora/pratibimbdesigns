@@ -102,9 +102,18 @@ if (import.meta.url.endsWith(process.argv[1]) || process.argv[1]?.includes('serv
     throw new Error('PORT environment variable must be set in production!');
   }
 
-  app.listen(port, () => {
+  const server = app.listen(port, () => {
     console.log(`🚀 Server running on port ${port}`);
     console.log(`📊 Environment: ${config.NODE_ENV}`);
     console.log(`🔗 Health check: http://localhost:${port}/api/health`);
+  });
+
+  server.on('error', (error: NodeJS.ErrnoException) => {
+    if (error.code === 'EADDRINUSE') {
+      console.error(`Port ${port} is already in use. Please free the port or use a different one.`);
+      process.exit(1);
+    } else {
+      console.error('Server error:', error);
+    }
   });
 } 
